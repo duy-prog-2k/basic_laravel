@@ -82,7 +82,12 @@ class BrandController extends Controller
 
     }
 
-    public function delete(){
+    public function delete($id){
+        $delete_brand = Brand::find($id);
 
+        $old_img = $delete_brand->brand_img;
+        unlink($old_img);
+        $delete_brand->delete();
+        return Redirect()->back()->with('success', 'Brand deleted successfully');
     }
 }
