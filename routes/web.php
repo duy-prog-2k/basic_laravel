@@ -1,7 +1,9 @@
 <?php
 
+use App\Http\Controllers\BrandController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ContactController;
+use App\Models\Brand;
 use App\Models\Category;
 use App\Models\User;
 use Illuminate\Support\Facades\DB;
@@ -50,3 +52,14 @@ Route::get('/soft-delete/category/restore/{id}', [CategoryController::class, 're
 Route::get('/soft-delete/category/delete/{id}', [CategoryController::class, 'delete']);
 // Insert Category
 Route::post('/category/add', [CategoryController::class, 'AddCat'])->name('store.category');
+
+// for brand
+
+Route::get('/brand/all', [BrandController::class, 'index'])->name('all.brand');
+Route::post('/brand/insert', [BrandController::class, 'insertBrand'])->name('brand.insert');
+
+// edit
+Route::get('/brand/edit/{id}', [BrandController::class, 'edit']);
+Route::post('/brand/update/{id}', [BrandController::class, 'updateBrand']);
+Route::get('/brand/delete/{id}', [BrandController::class, 'delete']);
+
